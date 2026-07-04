@@ -1,1 +1,1 @@
-# TikTok Scheduler App
+# tiktok-scheduler
