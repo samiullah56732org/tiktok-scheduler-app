@@ -1,0 +1,48 @@
+# Database Design
+
+## Collections
+- users
+  - uid
+  - displayName
+  - email
+  - photoURL
+  - createdAt
+  - lastLogin
+- scheduledPosts
+  - id
+  - userId
+  - title
+  - caption
+  - hashtags
+  - notes
+  - scheduledDate
+  - scheduledTime
+  - status
+  - createdAt
+  - updatedAt
+- activities
+  - userId
+  - action
+  - timestamp
+- settings
+  - userId
+  - theme
+  - timezone
+  - notifications
+- captionHistory
+  - userId
+  - prompt
+  - caption
+  - hashtags
+  - createdAt
+  - favorite
+- feedback
+  - userId
+  - message
+  - createdAt
+- notifications
+  - userId
+  - title
+  - description
+  - createdAt
+  - read

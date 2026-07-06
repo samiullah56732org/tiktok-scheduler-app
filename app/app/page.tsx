@@ -5,7 +5,7 @@ import { AppShell } from "@/components/app-shell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MetricCard } from "@/components/metric-card";
-import { ArrowRight, BarChart3, CalendarDays, CheckCircle2, Sparkles, UploadCloud, Zap } from "lucide-react";
+import { ArrowRight, BarChart3, CalendarDays, CheckCircle2, Sparkles, UploadCloud, Zap, ShieldCheck, Workflow } from "lucide-react";
 
 const features = [
   {
@@ -34,6 +34,7 @@ const benefits = [
   "Design-driven workflow for polished publishing plans",
   "Fast review loops with clear status visibility",
   "Context-rich dashboards for creative teams",
+  "Future-ready architecture for TikTok and AI integrations",
 ];
 
 const faqPreview = [
@@ -125,6 +126,27 @@ export default function Home() {
                   <p className="mt-2 text-sm text-muted-foreground">{item.answer}</p>
                 </div>
               ))}
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="grid gap-4 md:grid-cols-2">
+          <Card className="border-border/70 bg-background/80">
+            <CardHeader>
+              <div className="flex items-center gap-2 text-primary"><Workflow className="size-4" /><CardTitle>How it works</CardTitle></div>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <p>1. Create your content plan and capture your creative notes.</p>
+              <p>2. Schedule posts and review them from the shared calendar.</p>
+              <p>3. Generate AI captions and accelerate your publishing workflow.</p>
+            </CardContent>
+          </Card>
+          <Card className="border-border/70 bg-background/80">
+            <CardHeader>
+              <div className="flex items-center gap-2 text-primary"><ShieldCheck className="size-4" /><CardTitle>Built for review readiness</CardTitle></div>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <p>Protected routes, modular services, responsive UI, and clear production planning make the experience review-friendly.</p>
             </CardContent>
           </Card>
         </section>
