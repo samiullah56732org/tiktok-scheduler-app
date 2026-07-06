@@ -8,13 +8,21 @@ import { auth } from "@/app/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu, LayoutGrid, Upload, CalendarDays, BarChart3, Settings, Sparkles, HelpCircle, BadgeInfo, FileText, ShieldCheck, MessagesSquare, LogOut, ChevronRight } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Menu, LayoutGrid, Upload, CalendarDays, BarChart3, Settings, Sparkles, HelpCircle, BadgeInfo, FileText, ShieldCheck, MessagesSquare, LogOut, ChevronRight, Sparkle } from "lucide-react";
 
 const navigation = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutGrid },
@@ -58,7 +66,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.12),_transparent_28%),linear-gradient(135deg,_#f8fafc,_#fefefe)] text-foreground">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.16),_transparent_30%),linear-gradient(135deg,_hsl(var(--background))_0%,_hsl(var(--muted))_100%)] text-foreground transition-colors duration-300">
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-4 sm:px-6 lg:px-8">
         <header className="mb-4 rounded-2xl border border-border/70 bg-background/90 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
           <div className="flex items-center justify-between gap-3">
@@ -112,32 +120,50 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </div>
 
             <div className="flex items-center gap-2">
-              <Button asChild variant="ghost" size="sm">
+              <ThemeToggle />
+              <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
                 <Link href="/dashboard">Home</Link>
               </Button>
-              <Button onClick={handleLogout} variant="outline" size="sm">
-                <LogOut className="mr-2 size-4" />
-                Logout
-              </Button>
-              <div className="flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-2 py-1.5">
-                <Avatar size="sm">
-                  <AvatarImage src={user?.photoURL ?? undefined} alt={user?.displayName ?? "User"} />
-                  <AvatarFallback>{user?.displayName?.slice(0, 2).toUpperCase() ?? "US"}</AvatarFallback>
-                </Avatar>
-                <div className="hidden text-left sm:block">
-                  <p className="text-sm font-medium">{user?.displayName ?? "Creator"}</p>
-                  <p className="text-xs text-muted-foreground">{user?.email ?? "Signed in"}</p>
-                </div>
-              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-2 py-1.5 transition hover:bg-muted/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                    <Avatar size="sm">
+                      <AvatarImage src={user?.photoURL ?? undefined} alt={user?.displayName ?? "User"} />
+                      <AvatarFallback>{user?.displayName?.slice(0, 2).toUpperCase() ?? "US"}</AvatarFallback>
+                    </Avatar>
+                    <div className="hidden text-left sm:block">
+                      <p className="text-sm font-medium">{user?.displayName ?? "Creator"}</p>
+                      <p className="text-xs text-muted-foreground">{user?.email ?? "Signed in"}</p>
+                    </div>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuItem asChild>
+                    <Link href="/settings">Profile settings</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/help">Help center</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive">
+                    <LogOut className="mr-2 size-4" /> Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </header>
 
         <div className="flex flex-1 gap-6">
           <aside className="hidden w-72 shrink-0 rounded-2xl border border-border/70 bg-background/80 p-4 shadow-sm lg:block">
-            <div className="mb-6 rounded-2xl bg-gradient-to-br from-primary via-indigo-500 to-violet-600 p-4 text-primary-foreground">
-              <p className="text-sm font-medium">Weekly Performance</p>
-              <p className="mt-2 text-3xl font-semibold">+24%</p>
+            <div className="mb-6 rounded-2xl bg-gradient-to-br from-primary via-indigo-500 to-violet-600 p-4 text-primary-foreground shadow-lg">
+              <div className="flex items-center gap-2">
+                <div className="rounded-full bg-white/20 p-2">
+                  <Sparkle className="size-4" />
+                </div>
+                <p className="text-sm font-medium">Weekly Performance</p>
+              </div>
+              <p className="mt-3 text-3xl font-semibold">+24%</p>
               <p className="mt-1 text-sm text-primary-foreground/80">Strong engagement trend</p>
             </div>
             <nav className="space-y-1">

@@ -10,7 +10,7 @@ interface PageSectionProps {
 
 export function PageSection({ title, description, action, children, className }: PageSectionProps) {
   return (
-    <section className={cn("rounded-2xl border border-border/70 bg-background/80 p-5 shadow-sm", className)}>
+    <section className={cn("rounded-3xl border border-border/70 bg-background/80 p-5 shadow-sm transition hover:shadow-md sm:p-6", className)}>
       <div className="mb-4 flex items-start justify-between gap-3">
         <div>
           <h2 className="text-lg font-semibold tracking-tight">{title}</h2>

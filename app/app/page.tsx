@@ -5,7 +5,7 @@ import { AppShell } from "@/components/app-shell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MetricCard } from "@/components/metric-card";
-import { ArrowRight, BarChart3, CalendarDays, Sparkles, UploadCloud } from "lucide-react";
+import { ArrowRight, BarChart3, CalendarDays, CheckCircle2, Sparkles, UploadCloud, Zap } from "lucide-react";
 
 const features = [
   {
@@ -30,34 +30,45 @@ const features = [
   },
 ];
 
+const benefits = [
+  "Design-driven workflow for polished publishing plans",
+  "Fast review loops with clear status visibility",
+  "Context-rich dashboards for creative teams",
+];
+
+const faqPreview = [
+  { question: "How does the scheduling workspace work?", answer: "Create campaigns, review assets, and keep every release aligned in one place." },
+  { question: "Can I use AI-generated captions?", answer: "Yes, draft and refine copy without leaving the planning view." },
+];
+
 export default function Home() {
   return (
     <AppShell>
       <div className="space-y-6">
-        <section className="overflow-hidden rounded-3xl border border-border/70 bg-gradient-to-br from-primary/10 via-background to-violet-500/10 p-8 shadow-sm">
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <section className="overflow-hidden rounded-[2rem] border border-border/70 bg-gradient-to-br from-primary/15 via-background to-violet-600/10 p-6 shadow-[0_24px_80px_-36px_rgba(15,23,42,0.45)] sm:p-8 lg:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div className="max-w-2xl">
-              <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-background/80 px-3 py-1 text-sm font-medium text-primary">
-                Built for modern creators and teams
+              <p className="mb-3 inline-flex items-center rounded-full border border-primary/20 bg-background/70 px-3 py-1 text-sm font-medium text-primary backdrop-blur">
+                <Zap className="mr-2 size-4" /> Built for modern creators and teams
               </p>
-              <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+              <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
                 Plan, publish, and optimize short-form content with clarity.
               </h1>
-              <p className="mt-4 text-lg text-muted-foreground">
+              <p className="mt-4 text-lg text-muted-foreground sm:text-xl">
                 TikTok Scheduler brings your uploads, captions, scheduling, and reporting into one polished workspace.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild size="lg">
+                <Button asChild size="lg" className="rounded-full">
                   <Link href="/login">
                     Start free <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
+                <Button asChild variant="outline" size="lg" className="rounded-full">
                   <Link href="/dashboard">Open dashboard</Link>
                 </Button>
               </div>
             </div>
-            <Card className="border-border/70 bg-background/80">
+            <Card className="border-border/70 bg-background/80 shadow-lg">
               <CardHeader>
                 <CardTitle>Weekly snapshot</CardTitle>
               </CardHeader>
@@ -73,9 +84,9 @@ export default function Home() {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <Card key={feature.title} className="border-border/70 bg-background/80">
+              <Card key={feature.title} className="group border-border/70 bg-background/80 transition duration-200 hover:-translate-y-1 hover:shadow-md">
                 <CardHeader>
-                  <div className="mb-3 flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <div className="mb-3 flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition group-hover:scale-105">
                     <Icon className="size-5" />
                   </div>
                   <CardTitle>{feature.title}</CardTitle>
@@ -87,6 +98,48 @@ export default function Home() {
             );
           })}
         </section>
+
+        <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <Card className="border-border/70 bg-background/80">
+            <CardHeader>
+              <CardTitle>Why creators love it</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {benefits.map((benefit) => (
+                <div key={benefit} className="flex items-start gap-3 rounded-2xl border border-border/70 bg-muted/40 p-3">
+                  <CheckCircle2 className="mt-0.5 size-4 text-emerald-600" />
+                  <p className="text-sm text-muted-foreground">{benefit}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/70 bg-background/80">
+            <CardHeader>
+              <CardTitle>FAQ preview</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {faqPreview.map((item) => (
+                <div key={item.question} className="rounded-2xl border border-border/70 p-4">
+                  <p className="font-medium">{item.question}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.answer}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </section>
+
+        <footer className="rounded-3xl border border-border/70 bg-background/80 px-6 py-5 text-sm text-muted-foreground">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p>© 2026 TikTok Scheduler</p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/about" className="transition hover:text-foreground">About</Link>
+              <Link href="/privacy" className="transition hover:text-foreground">Privacy</Link>
+              <Link href="/terms" className="transition hover:text-foreground">Terms</Link>
+              <Link href="/contact" className="transition hover:text-foreground">Contact</Link>
+            </div>
+          </div>
+        </footer>
       </div>
     </AppShell>
   );

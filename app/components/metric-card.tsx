@@ -22,7 +22,7 @@ export function MetricCard({
   return (
     <Card
       className={cn(
-        "border-border/70 bg-gradient-to-br from-background to-muted/40 shadow-sm",
+        "border-border/70 bg-gradient-to-br from-background to-muted/40 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md",
         className
       )}
     >
