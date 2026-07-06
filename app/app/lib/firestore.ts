@@ -1,4 +1,18 @@
-import { addDoc, collection, doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import type { User } from "firebase/auth";
 import { db } from "@/app/lib/firebase";
 
@@ -16,10 +30,15 @@ export type ScheduledPostStatus = "draft" | "scheduled" | "published";
 export type ScheduledPost = {
   id?: string;
   userId: string;
+  title: string;
   caption: string;
+  hashtags: string;
+  notes: string;
   scheduledDate: string;
+  scheduledTime: string;
   status: ScheduledPostStatus;
   createdAt?: unknown;
+  updatedAt?: unknown;
 };
 
 export type ActivityEntry = {
@@ -85,13 +104,72 @@ export async function ensureUserSettings(userId: string): Promise<UserSettings> 
   return defaultSettings;
 }
 
-export async function createScheduledPost(post: ScheduledPost): Promise<ScheduledPost> {
+export async function createScheduledPost(post: Omit<ScheduledPost, "id" | "createdAt" | "updatedAt">): Promise<ScheduledPost> {
   const docRef = await addDoc(collection(db, "scheduledPosts"), {
     ...post,
     createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
   });
 
   return { ...post, id: docRef.id };
+}
+
+export async function listScheduledPosts(userId: string): Promise<ScheduledPost[]> {
+  const postsQuery = query(
+    collection(db, "scheduledPosts"),
+    where("userId", "==", userId),
+    orderBy("scheduledDate", "asc"),
+    orderBy("scheduledTime", "asc")
+  );
+
+  const snapshot = await getDocs(postsQuery);
+
+  return snapshot.docs.map((document) => ({
+    id: document.id,
+    ...(document.data() as Omit<ScheduledPost, "id">),
+  }));
+}
+
+export async function getScheduledPost(postId: string): Promise<ScheduledPost | null> {
+  const snapshot = await getDoc(doc(db, "scheduledPosts", postId));
+
+  if (!snapshot.exists()) {
+    return null;
+  }
+
+  return { id: snapshot.id, ...(snapshot.data() as Omit<ScheduledPost, "id">) };
+}
+
+export async function updateScheduledPost(postId: string, updates: Partial<ScheduledPost>): Promise<void> {
+  await updateDoc(doc(db, "scheduledPosts", postId), {
+    ...updates,
+    updatedAt: serverTimestamp(),
+  });
+}
+
+export async function deleteScheduledPost(postId: string): Promise<void> {
+  await deleteDoc(doc(db, "scheduledPosts", postId));
+}
+
+export function subscribeToScheduledPosts(
+  userId: string,
+  callback: (posts: ScheduledPost[]) => void
+): () => void {
+  const postsQuery = query(
+    collection(db, "scheduledPosts"),
+    where("userId", "==", userId),
+    orderBy("scheduledDate", "asc"),
+    orderBy("scheduledTime", "asc")
+  );
+
+  return onSnapshot(postsQuery, (snapshot) => {
+    const posts = snapshot.docs.map((document) => ({
+      id: document.id,
+      ...(document.data() as Omit<ScheduledPost, "id">),
+    }));
+
+    callback(posts);
+  });
 }
 
 export async function createActivity(userId: string, action: string): Promise<ActivityEntry> {
