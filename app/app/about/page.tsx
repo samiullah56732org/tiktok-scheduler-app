@@ -12,14 +12,14 @@ export default function AboutPage() {
     <AppShell>
       <div className="space-y-6">
         <PageSection
-          title="About TikTok Scheduler"
+          title="About Creator Scheduler"
           description="A modern operating system for creators managing short-form content at scale."
           action={<Button asChild variant="outline" className="rounded-full"><Link href="/dashboard">Back to dashboard</Link></Button>}
         >
           <Card className="border-border/70 bg-background/80">
             <CardContent className="space-y-4 py-6 text-sm text-muted-foreground">
               <p>
-                TikTok Scheduler helps marketing teams and solo creators plan, review, and optimize content from one central workspace.
+                Creator Scheduler helps marketing teams and solo creators plan, review, and optimize content from one central workspace.
               </p>
               <p>
                 The product focuses on a polished workflow for upload preparation, campaign planning, AI-assisted captioning, and reporting.

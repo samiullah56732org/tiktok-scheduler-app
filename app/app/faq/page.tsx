@@ -27,7 +27,7 @@ export default function FAQPage() {
       <div className="space-y-6">
         <PageSection
           title="Frequently asked questions"
-          description="Everything you need to know about getting started with TikTok Scheduler."
+          description="Everything you need to know about getting started with Creator Scheduler."
           action={<Button asChild variant="outline"><Link href="/dashboard">Back to dashboard</Link></Button>}
         >
           <div className="grid gap-4">

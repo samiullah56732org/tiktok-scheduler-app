@@ -19,7 +19,7 @@ export default function ContactPage() {
           <Card className="border-border/70 bg-background/80">
             <CardContent className="space-y-3 py-6 text-sm text-muted-foreground">
               <div className="mb-2 flex items-center gap-2 text-primary"><Mail className="size-4" /><p className="font-medium text-foreground">Get in touch</p></div>
-              <p>Email: hello@tiktokscheduler.app</p>
+              <p>Email: hello@creatorscheduler.app</p>
               <p>Response time: usually within one business day.</p>
               <p>Support is currently focused on onboarding, product feedback, and authenticated experience improvements.</p>
             </CardContent>

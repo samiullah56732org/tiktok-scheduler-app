@@ -56,7 +56,7 @@ export default function Home() {
                 Plan, publish, and optimize short-form content with clarity.
               </h1>
               <p className="mt-4 text-lg text-muted-foreground sm:text-xl">
-                TikTok Scheduler brings your uploads, captions, scheduling, and reporting into one polished workspace.
+                Creator Scheduler brings your uploads, captions, scheduling, and reporting into one polished workspace.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="rounded-full">
@@ -153,7 +153,7 @@ export default function Home() {
 
         <footer className="rounded-3xl border border-border/70 bg-background/80 px-6 py-5 text-sm text-muted-foreground">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p>© 2026 TikTok Scheduler</p>
+            <p>© 2026 Creator Scheduler</p>
             <div className="flex flex-wrap gap-4">
               <Link href="/about" className="transition hover:text-foreground">About</Link>
               <Link href="/privacy" className="transition hover:text-foreground">Privacy</Link>

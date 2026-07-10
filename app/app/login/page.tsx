@@ -46,7 +46,7 @@ export default function LoginPage() {
             <div className="mx-auto mb-3 flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
               <Sparkles className="size-6" />
             </div>
-            <CardTitle className="text-2xl">Welcome to TikTok Scheduler</CardTitle>
+            <CardTitle className="text-2xl">Welcome to Creator Scheduler</CardTitle>
             <CardDescription>Sign in with Google to access your planning workspace.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">

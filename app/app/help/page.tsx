@@ -20,7 +20,7 @@ export default function HelpPage() {
       <div className="space-y-6">
         <PageSection
           title="Help center"
-          description="Quick guidance for getting the most out of TikTok Scheduler."
+          description="Quick guidance for getting the most out of Creator Scheduler."
           action={<Button asChild variant="outline" className="rounded-full"><Link href="/dashboard">Back to dashboard</Link></Button>}
         >
           <Card className="border-border/70 bg-background/80">
