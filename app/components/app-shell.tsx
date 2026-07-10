@@ -79,7 +79,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 </SheetTrigger>
                 <SheetContent side="left" className="w-72 p-0">
                   <SheetHeader className="border-b px-5 py-4 text-left">
-                    <SheetTitle className="text-lg">TikTok Scheduler</SheetTitle>
+                    <SheetTitle className="text-lg">Creator Scheduler</SheetTitle>
                   </SheetHeader>
                   <div className="flex h-full flex-col gap-2 p-4">
                     <nav className="space-y-1">
@@ -114,7 +114,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </Sheet>
 
               <div>
-                <p className="text-sm font-semibold text-primary">TikTok Scheduler</p>
+                <p className="text-sm font-semibold text-primary">Creator Scheduler</p>
                 <p className="text-sm text-muted-foreground">Plan. Publish. Perform.</p>
               </div>
             </div>
